@@ -225,11 +225,12 @@ module Proxy::Ansible
       def working_dir
         return @root if @root
         dir = Proxy::Ansible::Plugin.settings[:working_dir]
+
         @tmp_working_dir = true
         if dir.nil?
           Dir.mktmpdir
         else
-          Dir.mktmpdir(nil, File.expand_path(dir))
+          Dir.mktmpdir(File.expand_path(dir))
         end
       end
 
